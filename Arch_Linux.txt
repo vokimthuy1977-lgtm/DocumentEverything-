@@ -1,0 +1,33 @@
+Steps to download neofetch on the stable Termux Latest 1.118.x version (note that you should not use the pre-release version, specifically 1.119.x):
+1. termux-change-repo
+=> choose 1 => choose 2
+2. pkg update && pkg upgrade -y
+3. pkg install git
+4. pkg install proot-distro
+5. proot-distro install archlinux
+6. proot-distro login archlinux
+7. cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+8. nano /etc/pacman.d/mirrorlist
+=> Japan, Hawain, Sigapo => Ctrl + x => y => enter
+9. pacman -Syyu
+10. pacman -Syu
+11. useradd -m -G wheel truyen
+12. passwd truyen
+=> 1234567 => re: 1234567
+13. pacman -S sudo
+14. EDITOR=nano visudo
+=> truyen ALL=(ALL:ALL) ALL, Ctrl + x => y => enter
+15. su - truyen
+16. sudo pacman -Syu
+17. git clone https://aur.archlinux.org/yay.git
+18. exit
+19. pacman -S --needed base-devel git
+20. su - truyen (or --> proot-distro login archlinux --user truyen)
+21. cd yay
+22. makepkg -si
+23. yay --version
+24. cd ..
+25. rm -rf yay
+26. yay -S neofetch
+27. neofetch
+--END--
